@@ -1,4 +1,4 @@
-# Optimizing Government Budgets to Minimize Crime Rate
+# *INCOMPLETE* Optimizing Government Budgets to Minimize Crime Rate
 
 This [model](https://colab.research.google.com/drive/1TgD1DPvcEBcBBCTr8JKGETSXEAuC_xS5?usp=sharing) optimizes state budget decisions to minimize crime rates - so that future budgetary decisions can be made with data driven insights.
 
