@@ -1,8 +1,8 @@
-# *\*INCOMPLETE\** Optimizing Government Budgets to Minimize Crime Rate
+# Optimizing Government Budgets to Minimize Crime Rate
 
 This [model](https://colab.research.google.com/drive/1TgD1DPvcEBcBBCTr8JKGETSXEAuC_xS5?usp=sharing) optimizes state budget decisions to minimize crime rates - so that future budgetary decisions can be made with data driven insights.
 
-I encourage users to access the presentation above, which does a much better job at explaining the project than what is possible with the format below:
+NOTE: I encourage users to access the presentation above, which does a much better job at explaining the project than what is possible with the format below:
 
 ---
 
@@ -28,17 +28,32 @@ The first step was to combine all the historic datasets into one analysis-ready 
 
 The next step was to construct all the math behind the optimization model. First, a neural network was used to calculate feature importance among the population profile data points to predict crime rates, and using feature importance the top 10 most important features were selected. These selected population profile features were then used in a linear regression model to predict violent crime rate and property crime rate separetely. The budget category features were then used in a linear regression model to predict each of the selected population profile featuyres separately. Finally, the weights (coefficients and intercepts) from each model were then extracted and put into functions to use for the optimization model (with scaling when necessary).
 
-Lastly, utilizing pyomo the functions and constraints were fit to the model, and solved using the 'cbc' solver. Additionally, functions were constructed to take the raw data and convert it into a format accessible/appropriate for the model. The user can simply upload their budget data in place of the 2021 budget data file, which is currently used as an example, and the code will neatly ouput the expected crime rate and optimized budget categories.
+Lastly, utilizing pyomo the functions and constraints were fit to the model, and solved using the 'cbc' solver. The decision variables had to be set to 0 at the start of the model, and then optimized with the constraints mentioned above. Additionally, functions were constructed to take the raw data and convert it into a format accessible/appropriate for the model. The user can simply upload their budget data in place of the 2021 budget data file, which is currently used as an example, and the code will neatly ouput the expected crime rate and optimized budget categories.
 
 ---
 
 **Key assumptions:**
 
-...
+- State residents act in similar ways (crime) with similar population profile data - meaning the model does not account for the difference culturally among states
+  - *See 'Model Performance' below for projected impact*
+- Accepted a minimum crime rate of 0.01 - it would be unreasonable to predict a crime rate of 0.0
+- The budget total input into the model does not include "Direct Expenditures" (which is not one of the categories listed above) - the reason being this funding is split between national and state funding, and does not change much from state to state
+  - *So with a total budget of $1 million, and a direct expenditures of $200k --> the model input is $800k*
 
 ---
 
 **Model Performance:**
 
-...
+- The output of the machine learning model crime rate predictions were extremely accurate
+  - All crime rate predictions were within 0.001 of the expected true rate - suggesting that culture does not make too large of an impact
+
+---
+
+**Conclusions and Projected Benefits:**
+
+- ‘Education’, ‘Public Safety’, and ‘Environment and Housing’ are the most influential factors on expected crime rates
+  - Every state maxed out the amount they could allocate to these budgetary categories. This suggests that the government currently is spending too little on these categories and more funding should be put in place. Moreover, with less funding limitations the optimization model should be rerun to produce better results
+- Of the 10 most important features identified from the Neural Network: ‘health insurance coverage’ and ‘Proportion of Population above 25 with no Highschool degree’ both align with these most influential factors - ultimately suggesting that these should be heavily considered when making budgetary decisions
+
+
 
