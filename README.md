@@ -10,9 +10,9 @@ Budget Data from *Census.gov* is broken officially into these categories (within
 This finished model (assessible [here](https://colab.research.google.com/drive/1TgD1DPvcEBcBBCTr8JKGETSXEAuC_xS5?usp=sharing)) can take any US state and optimize its budget to minimize expected crime rates. It ouputs the optimized budget categories, given the state's total budget, as well as its "Interest on General Debt" and "General Expenditure, n.e.c." - which are both predetermined. Furthermore, the model constrains to the historic range of budget categories in the training data, ranging from 2015 to 2021 (excluding 2020).
 
 Data Sourcing:
-Crime data: [FBI: Crime Data Explorer](https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/home)
-Population Profile Data: [ACS Population Profiles](https://data.census.gov/table/ACSSPP1Y2015.S0201?t=Educational%20Attainment:Employment:Health%20Insurance:Income%20and%20Poverty:Renter%20Costs&g=010XX00US$0400000&y=2015&moe=false)
-Budget Data: [Census.gov - 2020 Budget Data, for example](https://www.census.gov/data/datasets/2020/econ/local/public-use-datasets.html)
+- Crime data: [FBI: Crime Data Explorer](https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/home)
+- Population Profile Data: [ACS Population Profiles](https://data.census.gov/table/ACSSPP1Y2015.S0201?t=Educational%20Attainment:Employment:Health%20Insurance:Income%20and%20Poverty:Renter%20Costs&g=010XX00US$0400000&y=2015&moe=false)
+- Budget Data: [Census.gov - 2020 Budget Data, for example](https://www.census.gov/data/datasets/2020/econ/local/public-use-datasets.html)
 
 Construction of the Model:
 Crime is influenced by population profiles and statistics, which are inturn influenced by budgetary decisions (it is not possible/reasonable to say that budgets directly influence crime). So the model simply put follows the logic that budget data influences population profile data, and then population profile data influences crime data.
